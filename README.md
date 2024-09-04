@@ -18,32 +18,40 @@ Follow these steps to set up the project:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/iban-validator.git
+   git clone https://github.com/stefandjuric/iban-validator.git
    cd iban-validator
 
 2. **Create a virtual environment**
+    ```bash
     python -m venv venv
 
 3. **Activate the virtual environment**
 
     - On Windows:
+        ```bash
         venv\Scripts\activate
     
     - On macOS/Linux:
+        ```bash
         source venv/bin/activate
 
 4. **Install the dependencies**
+    ```bash
     pip install -r requirements.txt
 
 5. **Apply database migrations**
+    ```bash
     python manage.py migrate
 
 6. **Create a superuser**
+    ```bash
     python manage.py createsuperuser
 
 7. **Running the Project**
     To start the development server, use the following command:
+        ```bash
         python manage.py runserver
+
     Visit http://localhost:8000/ in your web browser to view the project.
 
     Admin Panel
@@ -70,6 +78,7 @@ Follow these steps to set up the project:
 
 9. **Testing**
     To run tests, use the following command:
+        ```bash
         python manage.py test
 
 
