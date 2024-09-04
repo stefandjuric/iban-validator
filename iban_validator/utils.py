@@ -26,25 +26,28 @@ def suggest_correct_iban(iban):
         'Z': '2',  # The letter Z vs. two
         '5': 'S',  # Five vs. the letter S
         'S': '5',  # The letter S vs. five
-        # Add other common typos if needed
+        '8': 'B',  # Eight vs. the letter B
+        'B': '8',  # The letter B vs. eight
+        '6': 'G',  # Six vs. the letter G
+        'G': '6',  # The letter G vs. six
+        '9': 'g',  # Nine vs. lowercase letter g
+        'g': '9',  # Lowercase letter g vs. nine
     }
 
     suggested_iban = list(iban)
 
     for i, char in enumerate(iban):
         if char in common_typos:
-            # Suggest replacing typo with correct character
+            # Try replacing typo with possible correct character
+            original_char = suggested_iban[i]
             suggested_iban[i] = common_typos[char]
+
+            # Check if the new IBAN is valid
             if is_valid_iban(''.join(suggested_iban)):
-                print(suggested_iban[i])  # Print the corrected character
-                break  # Stop at the first detected mistake for simplicity
-            print(''.join(suggested_iban))  # Print the suggested IBAN
+                return ''.join(suggested_iban)  # Return valid suggestion
 
-    # Recreate the IBAN string
-    suggested_iban = ''.join(suggested_iban)
+            # Revert change if not valid
+            suggested_iban[i] = original_char
 
-    # Validate if the suggested IBAN is now valid
-    if is_valid_iban(suggested_iban):
-        return suggested_iban
-    else:
-        return None  # Return None if no valid suggestion is found
+    # If no valid IBAN is found, return None
+    return None
